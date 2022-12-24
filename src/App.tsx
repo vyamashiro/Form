@@ -1,25 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Select from 'react-select';
+import languageNames from '../src/staticData/languageNames.json';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <input type={'text'} />
+
+      <input type={'email'} />
+      <input type={'password'} />
+      
+      <input type={'tel'} />
+
+      <input type={'checkbox'} />
+      <input type={'radio'} />
+
+      <input type={'number'} />
+      <input type={'url'} />
+      
+      <input type={'date'} />
+      <input type={'month'} />
+    
+      <Select
+        // defaultValue={}
+        isMulti
+        name="colors"
+        // options={languageNames}
+        className="basic-multi-select"
+        classNamePrefix="select"
+      />
+
+    </>
   );
 }
 
