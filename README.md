@@ -1,4 +1,5 @@
-# Nice Form
+# Nice Form (under construction)
+Complete form created for study purposes using all form tags and various techniques.
 
 ## Stack
 - React
@@ -12,6 +13,8 @@
 
 ## Business Rules
 - Not allow input more than 100 characters for input text.
-- Not allow input more than t00 characters for textarea.
+- Not allow input more than 500 characters for textarea.
+- The field "Programming Language" must allow the client create a new option.
 
-
+## Next Steps
+- Add input URL

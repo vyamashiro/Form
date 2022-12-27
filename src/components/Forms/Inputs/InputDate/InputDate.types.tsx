@@ -4,4 +4,5 @@ export type InputDate = {
     ariaLabel: string,
     min: string,
     max: string,
+    pattern?: string,
 }

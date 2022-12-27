@@ -4,5 +4,6 @@ export type InputSeach = {
     id: string, 
     name: string, 
     placeholder: string,
+    pattern?: string,
     maxLength: number,
 };

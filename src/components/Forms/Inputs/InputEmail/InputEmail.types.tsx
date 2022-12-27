@@ -6,4 +6,5 @@ export type InputEmail = {
     ariaLabel: string,
     value?: string,
     maxLength: number,
+    pattern?: string,
 };
