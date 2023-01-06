@@ -1,7 +1,10 @@
 import React from 'react';
+import { useForm, SubmitHandler } from "react-hook-form";
+import * as I from './Form.types';
 import { FormWrapper } from './Form.styles';
-import { FlexDirectionRowContainer } from '../../styles/general.styles';
+import { FlexDirectionRowContainer, FlexDirectionColumnContainer } from '../../globalStyle/globalStyle.styles';
 import Select from 'react-select';
+import CreatableSelect from 'react-select/creatable';
 import { InputText } from '../../components/Forms/Inputs/InputText/InputText';
 import { InputEmail } from '../../components/Forms/Inputs/InputEmail/InputEmail';
 import { InputPassword } from '../../components/Forms/Inputs/InputPassword/InputPassword';
@@ -10,34 +13,49 @@ import { InputCheckbox } from '../../components/Forms/Inputs/InputCheckbox/Input
 import languageNames from '../../staticData/languageNames.json';
 
 export const Form = () => {
+  const { register, handleSubmit, control, formState: { errors } } = useForm<I.Inputs>();
+  const onSubmit: SubmitHandler<I.Inputs>  = data => console.log(data);
+
   return (
     <>
-      <FormWrapper>
+      <FormWrapper onSubmit={handleSubmit(onSubmit)}>
 
         <FlexDirectionRowContainer>
 
-          <InputText 
-            id={'name'}
-            name={'name'}
-            placeholder={'First Name'}
-            ariaLabel={'First Name'}
-            maxLength={100}
-            required={true}
-          />
-          {/* Error message if user input more than 100 characters */}
+          <FlexDirectionColumnContainer>
 
-          <InputText 
-            id={'surname'}
-            name={'surname'}
-            placeholder={'Surname'}
-            ariaLabel={'Surname'}
-            maxLength={100}
-            required={true}
-          />
+            <InputText 
+              id={'name'}
+              placeholder={'First Name'}
+              ariaLabel={'First Name'}
+              maxLength={100}
+              dataTest={'input-name'}
+              {...register("name", { required: true })} 
+            />
+          
+            {errors.name && <span>This field is required</span>}
+
+          </FlexDirectionColumnContainer>
+
+          <FlexDirectionColumnContainer>
+
+            <InputText 
+              id={'surname'}
+              placeholder={'Surname'}
+              ariaLabel={'Surname'}
+              maxLength={100}
+              dataTest={'input-surname'}
+              {...register("surname", { required: true })} 
+            />
+            
+            {errors.surname && <span>This field is required</span>}
+          
+          </FlexDirectionColumnContainer>
+
 
         </FlexDirectionRowContainer>
 
-        <InputEmail
+        {/* <InputEmail
           id={'email'}
           name={'email'}
           placeholder={'Input email'}
@@ -63,7 +81,7 @@ export const Form = () => {
             maxLength={20}
           />
         
-        </FlexDirectionRowContainer>
+        </FlexDirectionRowContainer> */}
 
         
         {/* <InputCheckbox
@@ -73,13 +91,30 @@ export const Form = () => {
           label={'Mexicana'}
         /> */}
 
-        <Select
-          // defaultValue={}
+        {/* <Select
           isMulti
-          name="colors"
-          // options={languageNames}
+          name="work-time"
+          options={[
+            { value: 'Part-time', label: 'Part-time', color: '#00875A'},
+            { value: 'Full-time', label: 'Full-time', color: '#0052CC'}
+          ]}
           className="basic-multi-select"
           classNamePrefix="select"
+          placeholder={'Contract time'}
+        />
+
+        <CreatableSelect        
+          isMulti
+          name="programming-language"
+          options={[
+            { value: 'HTML', label: 'HTML'},
+            { value: 'CSS', label: 'CSS'},
+            { value: 'Javascript', label: 'Javascript'}
+          ]}
+          className="basic-multi-select"
+          classNamePrefix="select"
+          isClearable
+          placeholder={'Type the programming language'}
         />
 
     <TextAreaComponent 
@@ -87,7 +122,7 @@ export const Form = () => {
       rows={10}
       cols={5}
       maxLength={500}
-    />
+    /> */}
 
 
         {/* <input type={'checkbox'} />

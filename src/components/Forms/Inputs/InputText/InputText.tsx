@@ -1,8 +1,9 @@
 import React from 'react';
 import { Input } from './InputText.styles';
 import * as I from './InputText.types';
+import { forwardRef } from 'react';
 
-export const InputText = ({
+export const InputText = forwardRef(({
   id,
   name,
   placeholder,
@@ -12,12 +13,15 @@ export const InputText = ({
   pattern,
   title,
   required = false,
-}: I.InputText) => {
+  dataTest,
+  ...props
+}: I.InputText, ref): any => {
   return(
     <Input
       id={id}
       name={name}
       type={'text'}
+      data-test={dataTest}
       placeholder={placeholder}
       aria-label={ariaLabel}
       value={value}
@@ -25,6 +29,8 @@ export const InputText = ({
       pattern={pattern}
       title={title}
       required={required}
+      ref={ref}
+      {...props}
     />
   )
-};
+});

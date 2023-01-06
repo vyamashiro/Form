@@ -19,3 +19,8 @@ export const FlexDirectionRowContainer = styled.div`
   display: flex;
   flex-direction: row;
 `
+
+export const FlexDirectionColumnContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`
