@@ -1,20 +1,38 @@
 import React from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useQuery, useMutation } from "@apollo/client";
 import * as I from './Form.types';
 import { FormWrapper } from './Form.styles';
 import { FlexDirectionRowContainer, FlexDirectionColumnContainer } from '../../globalStyle/globalStyle.styles';
-import Select from 'react-select';
-import CreatableSelect from 'react-select/creatable';
+// import { CREATE_USER } from './Form.services';
+import { GET_USERS } from './Form.services';
+// import Select from 'react-select';
+// import CreatableSelect from 'react-select/creatable';
 import { InputText } from '../../components/Forms/Inputs/InputText/InputText';
-import { InputEmail } from '../../components/Forms/Inputs/InputEmail/InputEmail';
-import { InputPassword } from '../../components/Forms/Inputs/InputPassword/InputPassword';
-import { TextAreaComponent } from '../../components/Forms/TextArea/TextArea';
-import { InputCheckbox } from '../../components/Forms/Inputs/InputCheckbox/InputCheckbox';
-import languageNames from '../../staticData/languageNames.json';
+// import { InputEmail } from '../../components/Forms/Inputs/InputEmail/InputEmail';
+// import { InputPassword } from '../../components/Forms/Inputs/InputPassword/InputPassword';
+// import { TextAreaComponent } from '../../components/Forms/TextArea/TextArea';
+// import { InputCheckbox } from '../../components/Forms/Inputs/InputCheckbox/InputCheckbox';
+// import languageNames from '../../staticData/languageNames.json';
 
 export const Form = () => {
-  const { register, handleSubmit, control, formState: { errors } } = useForm<I.Inputs>();
-  const onSubmit: SubmitHandler<I.Inputs>  = data => console.log(data);
+  const { register, handleSubmit, formState: { errors } } = useForm<I.Inputs>();
+  // const [createUser, { loading }] = useMutation(CREATE_USER);
+  const {data: users, loading }: any = useQuery(GET_USERS);
+
+  console.log('users', users);
+
+  const onSubmit: SubmitHandler<I.Inputs> = (data) => {
+    console.log(data);
+
+    // createUser({
+    //   variables: {
+    //     name: data.name,
+    //     surname: data.surname,
+    //   },
+    // });
+
+  };
 
   return (
     <>
@@ -24,13 +42,13 @@ export const Form = () => {
 
           <FlexDirectionColumnContainer>
 
-            <InputText 
+            <InputText
               id={'name'}
               placeholder={'First Name'}
               ariaLabel={'First Name'}
               maxLength={100}
               dataTest={'input-name'}
-              {...register("name", { required: true })} 
+              {...register("name", { required: true })}
             />
           
             {errors.name && <span>This field is required</span>}
@@ -45,7 +63,7 @@ export const Form = () => {
               ariaLabel={'Surname'}
               maxLength={100}
               dataTest={'input-surname'}
-              {...register("surname", { required: true })} 
+              {...register("surname", { required: true })}
             />
             
             {errors.surname && <span>This field is required</span>}

@@ -1,4 +1,4 @@
-# Nice Form (under construction)
+# Nice Form - Front-end (under construction)
 Complete form created for study purposes using all form tags and various techniques.
 
 ## Stack
@@ -7,6 +7,8 @@ Complete form created for study purposes using all form tags and various techniq
 - React-hook-form
 - React-select
 - React-dropzone
+- Graphql
+- Apollo/client
 
 ## Techniques
 - Stepper (pending)
