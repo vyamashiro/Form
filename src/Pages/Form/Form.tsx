@@ -4,8 +4,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import * as I from './Form.types';
 import { FormWrapper } from './Form.styles';
 import { FlexDirectionRowContainer, FlexDirectionColumnContainer } from '../../globalStyle/globalStyle.styles';
-// import { CREATE_USER } from './Form.services';
-import { GET_USERS } from './Form.services';
+import { CREATE_USER, GET_USERS } from './Form.services';
 // import Select from 'react-select';
 // import CreatableSelect from 'react-select/creatable';
 import { InputText } from '../../components/Forms/Inputs/InputText/InputText';
@@ -17,20 +16,20 @@ import { InputText } from '../../components/Forms/Inputs/InputText/InputText';
 
 export const Form = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<I.Inputs>();
-  // const [createUser, { loading }] = useMutation(CREATE_USER);
-  const {data: users, loading }: any = useQuery(GET_USERS);
+  const {data: users }: any = useQuery(GET_USERS);
+  const [createUser, { data, loading, error }] = useMutation(CREATE_USER);
 
   console.log('users', users);
 
   const onSubmit: SubmitHandler<I.Inputs> = (data) => {
     console.log(data);
 
-    // createUser({
-    //   variables: {
-    //     name: data.name,
-    //     surname: data.surname,
-    //   },
-    // });
+    createUser({
+      variables: {
+        name: data.name,
+        surname: data.surname,
+      },
+    });
 
   };
 

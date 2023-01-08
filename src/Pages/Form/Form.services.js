@@ -9,14 +9,18 @@ export const GET_USERS = gql`
   }
 `;
 
-// export const CREATE_USER = gql`
-//   mutation createUser(
-//     $name: String!
-//     $surname: String!
-//   ) {
-//     createUser {
-//       name: $name
-//       surname: $surname
-//     }
-//   }
-// `;
+export const CREATE_USER = gql`
+  mutation createUser(
+    $name: String!
+    $surname: String!
+  ){
+    createUser(
+      user: {
+        name: $name
+        surname: $surname
+      }
+    ){
+      ok
+    }
+  }
+`;
