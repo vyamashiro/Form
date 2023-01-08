@@ -32,3 +32,19 @@ export const DELETE_USER = gql`
     }
   }
 `;
+
+export const UPDATE_USER = gql`
+  mutation updateUser(
+    $userId: ID!
+    $name: String!
+  ){
+    updateUser(
+      userId: $userId
+      user: {
+        name: $name
+      }
+    ){
+      ok
+    }
+  }
+`;

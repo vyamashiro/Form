@@ -4,7 +4,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import * as I from './Form.types';
 import { FormWrapper } from './Form.styles';
 import { FlexDirectionRowContainer, FlexDirectionColumnContainer } from '../../globalStyle/globalStyle.styles';
-import { GET_USERS, CREATE_USER, DELETE_USER } from './Form.services';
+import { GET_USERS, CREATE_USER, DELETE_USER, UPDATE_USER } from './Form.services';
 // import Select from 'react-select';
 // import CreatableSelect from 'react-select/creatable';
 import { InputText } from '../../components/Forms/Inputs/InputText/InputText';
@@ -19,7 +19,8 @@ export const Form = () => {
   const {data: users }: any = useQuery(GET_USERS);
   const [createUser, { data, loading, error }] = useMutation(CREATE_USER);
   const [deleteUser] = useMutation(DELETE_USER);
-
+  const [updateUser] = useMutation(UPDATE_USER);
+  
   console.log('users', users);
 
   const onSubmit: SubmitHandler<I.Inputs> = (data) => {
@@ -40,6 +41,14 @@ export const Form = () => {
     });
   }
 
+  const handleUpdateUser = async () => {
+    await updateUser({
+      variables: { 
+        userId: '63baa0be130d178b57c6b37c',
+        name: 'Katsuo123'
+      }
+    });
+  }
 
   return (
     <>
@@ -163,7 +172,8 @@ export const Form = () => {
       
         <button type='submit'>Enviar</button>
         <button onClick={handleDeleteUser}>Delete User</button>
-
+        <button onClick={handleUpdateUser}>Update User</button>
+        
       </FormWrapper>
     </>
   );
