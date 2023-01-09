@@ -2,7 +2,7 @@ import React from 'react';
 import { Input } from './InputDate.style';
 import * as I from './InputDate.types';
 
-export const InputDate = ({ id, name, ariaLabel, min, max }: I.InputDate) => {
+export const InputDate = ({ id, name, ariaLabel, min, max, pattern }: I.InputDate) => {
   return(
     <Input
       type="date"
@@ -11,6 +11,7 @@ export const InputDate = ({ id, name, ariaLabel, min, max }: I.InputDate) => {
       aria-label={ariaLabel}
       min={min}
       max={max}
+      pattern={pattern}
     />
   )
 };

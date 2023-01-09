@@ -1,6 +1,6 @@
 export type InputText = {
-    id: string,
-    name: string,
+    id?: string,
+    name?: string,
     placeholder?: string,
     ariaLabel: string,
     value?: string,
@@ -8,4 +8,7 @@ export type InputText = {
     pattern?: string,
     title?: string,
     required?: boolean,
+    dataTest?: string,
+    props?: any,
+    ref?: any
 };

@@ -9,6 +9,7 @@ export const InputEmail = ({
   placeholder,
   ariaLabel,
   value,
+  pattern,
   maxLength = 100,
 }: I.InputEmail) => {
 
@@ -19,6 +20,7 @@ export const InputEmail = ({
       name={name}
       className={className}
       placeholder={placeholder}
+      pattern={pattern}
       aria-label={ariaLabel}
       value={value}
       maxLength={maxLength}
